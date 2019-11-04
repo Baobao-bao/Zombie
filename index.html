@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/css_file.css">
+</head>
+<body>
+    <h1 id='score'>score: 0</h1>
+    <img id='zombie' src="images/Zombie.png" alt="zombie">
+    <img id='zombie1' src="images/Zombie.png" alt="zombie">
+    <input type="button" value='reset' id="reset" >
+    <script>
+        let score = 0;
+        setInterval(change_place,2000,"zombie")
+        setInterval(change_place,2000,"zombie1")
+        
+
+
+        let zombie_img = document.getElementById("zombie")
+        zombie_img.onclick =  function kill(){    
+            // display explosion image
+            console.log(zombie_img.getAttribute('src'))
+            if (zombie_img.getAttribute('src') == "images/Zombie.png"){
+                let audio = new Audio('src/gun-gunshot-01.mp3');    
+                audio.play();
+                document.getElementById('zombie').src = "images/explosion.gif";
+
+                score++;
+                score_renew();
+
+                setTimeout(change_place,500,"zombie");
+            }
+        }
+
+        let zombie_img1 = document.getElementById("zombie1")
+        zombie_img1.onclick =  function kill(){    
+            // display explosion image
+            if (zombie_img1.getAttribute('src') == "images/Zombie.png"){
+                let audio = new Audio('src/gun-gunshot-01.mp3');
+                audio.play();
+                document.getElementById('zombie1').src = "images/explosion.gif";
+
+                score++;
+                score_renew();
+
+                setTimeout(change_place,500,"zombie1");
+            }
+        }
+
+
+
+        function change_place(ID){
+            let win_hei = window.innerHeight - 128;// minus the height and width of the image(128px)
+            let win_wid = window.innerWidth - 128;
+            let x = Math.floor(Math.random() * win_wid);
+            let y = Math.floor(Math.random() * win_hei);
+
+            document.getElementById(ID).style.left = x + "px";
+            document.getElementById(ID).style.top = y + "px";
+
+            document.getElementById(ID).src = "images/Zombie.png";
+            
+        }
+
+        function score_renew(){
+            document.getElementById('score').innerText = "score: " + score;
+        }
+
+        let reset = document.getElementById('reset');
+        reset.onclick =  function reset(){
+            score = 0;
+            document.getElementById('zombie').style.left = '';
+            document.getElementById('zombie').style.top = '';
+            document.getElementById('zombie1').style.left = '';
+            document.getElementById('zombie1').style.top = '';
+            score_renew();
+        }
+    </script>
+</body>
+</html>

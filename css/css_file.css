@@ -1,0 +1,18 @@
+body{
+    text-align: center;
+}
+#zombie{
+    position: absolute;
+}
+#zombie1{
+    top:300px;
+}
+input{
+    position: absolute;
+    bottom:10px;
+}
+img{
+    width: 128px;
+    height: 128px;
+    position: absolute;
+}
