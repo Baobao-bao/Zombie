@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="./css/css_file.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/css_file.css">
 </head>
 <body>
     <h1 id='score'>score: 0</h1>
@@ -14,16 +14,17 @@
     <input type="button" value='reset' id="reset" >
     <script>
         let score = 0;
-        setInterval(change_place,2000,"zombie")
-        setInterval(change_place,2000,"zombie1")
+        Id = setInterval(change_place,2000,"zombie")
+        Id1 = setInterval(change_place,2000,"zombie1")
         
 
 
-        let zombie_img = document.getElementById("zombie")
+        let zombie_img = document.getElementById("zombie") 
         zombie_img.onclick =  function kill(){    
             // display explosion image
             console.log(zombie_img.getAttribute('src'))
             if (zombie_img.getAttribute('src') == "images/Zombie.png"){
+                clearInterval(Id)
                 let audio = new Audio('src/gun-gunshot-01.mp3');    
                 audio.play();
                 document.getElementById('zombie').src = "images/explosion.gif";
@@ -31,7 +32,9 @@
                 score++;
                 score_renew();
 
-                setTimeout(change_place,500,"zombie");
+                setTimeout(change_place,1500,"zombie");
+
+                Id = setInterval(change_place,2000,"zombie")
             }
         }
 
@@ -39,6 +42,7 @@
         zombie_img1.onclick =  function kill(){    
             // display explosion image
             if (zombie_img1.getAttribute('src') == "images/Zombie.png"){
+                clearInterval(Id1)
                 let audio = new Audio('src/gun-gunshot-01.mp3');
                 audio.play();
                 document.getElementById('zombie1').src = "images/explosion.gif";
@@ -46,7 +50,8 @@
                 score++;
                 score_renew();
 
-                setTimeout(change_place,500,"zombie1");
+                setTimeout(change_place,1500,"zombie1");
+                Id1 = setInterval(change_place,2000,"zombie1")
             }
         }
 
